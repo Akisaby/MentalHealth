@@ -1,0 +1,96 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MENTAL HEALTH</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'linearicons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toastr.min.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="/" class="active"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="dropdown">
+                            <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="fa fa-graduation-cap"></span> Cagoteries </a>
+                            <ul class="dropdown-menu wet-asphalt">
+                                <li class=""><a href="/ibyiciro/ibidukikije"><span>Ibidukikije</span></a></li>
+                                <li class=""><a href="/ibyiciro/imikino-n-imyidagaduro"><span>Imikino n'imyidagaduro</span></a></li>
+                                <li class=""><a href="/ibyiciro/ubuzima-n-imibereho-myiza"><span>Ubuzima n'imibereho myiza</span></a></li>
+                                <li class=""><a href="/ibyiciro/ubucuti-n-urukundo"><span>Ubucuti n'urukundo</span></a></li>
+                                <li class=""><a href="/ibyiciro/umurimo"><span>Umurimo</span></a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/ibyiciro" class="more">Reba byose</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/dufashe"><span class="glyphicon glyphicon-ok"></span> Dufashe</a></li>
+                    </ul>
+                    <div class="col-sm-3 col-md-4 searchform">
+                        <form class="navbar-form" role="search" action="/search" method="get">
+                            <input type="hidden" name="_token" value="O4slPuz0h8TFMoFrI2Mav7XrfNw5T2dI8jYB7l9v">
+                            <div style="display:table;" class="input-group">
+                                <input type="search" onKeyUp="fx(this.value)" autocomplete="off" class="form-control search-input" name="qu" id="qu" placeholder="Shakisha">
+                                <div style="width: 1%;" class="input-group-btn ">
+                                    <button type="button" class="btn btn-default textbox-clr" id="textbox-clr" onClick="lightbg_clr()"></button>
+                                    <button class="btn btn-default query-submit" type="submit" name="submit" alt="Shakisha" title="Shakisha"><i class="fa fa-search" style="font-size: 18px;color: #46c147;"></i></button>
+                                </div>
+                            </div>
+                            <div id="livesearch"></div>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Injira</a></li>
+                        <li class="btn-trial"><a href="/register"><span class="glyphicon glyphicon-book"></span> Iyandikishe</a></li>
+                    </ul>
+                </div>
+
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form action="/search" method="get">
+                            <input type="hidden" name="_token" value="O4slPuz0h8TFMoFrI2Mav7XrfNw5T2dI8jYB7l9v">
+                            <input class="sb-search-input" type="search" id="search" name="searchpost" placeholder="Shakisha">
+                            <input class="sb-search-submit" type="submit" alt="Shakisha" title="Shakisha" value="">
+                            <span class="sb-icon-search"> </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+        
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer Content -->
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/toastr.min.js' %}"></script>
+
+    <!-- React JS -->
+    <script src="{% static 'react/js/react.min.js' %}"></script>
+    <script src="{% static 'react/js/react-dom.min.js' %}"></script>
+    <script src="{% static 'react/js/browser.min.js' %}"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>
