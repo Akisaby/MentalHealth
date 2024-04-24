@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+<main id="module_blog" class="module_inner">
+    <section id="content" class="clfx inner">
+    <div class="container"><div class="row"><div id="middlecol" class="col-md-9 col-md-push-3 hascol_left"><div id="blog_article_wrap"><div class="blog_top clfx">
+        <h1 class="blog_article_title">{{ article.title }}</h1>
+    <div class="blog_top_date_cat"><span class="blog_date">
+        <i class="fa fa-calendar"></i>24-08-2022</span>
+    </div></div><div id="maincol">
+    <div id="main_body">
+        {{ article.content }}
+    </div>
+     
+    <div>
+        <a href="#forum" name="forum" id="forum"></a>			
+        <h3 style="font-family:Rockwell;">C</h3>
+            <div class="formulaire_spip formulaire_forum ajax" id="formulaire_forum">
+    <form action="" method="post" enctype='multipart/form-data'><div>
+    <div><input name="id_article" value="4445" type="hidden"/>
+         <input name="page" value="article" type="hidden"/>
+         <input name='formulaire_action' type='hidden'value='forum' />
+         <input name='formulaire_action_args' type='hidden'value='' />
+         <input type='hidden' name='id_article' value='4445' />
+         <input type='hidden' name='id_objet' value='4445' />
+         <input type='hidden' name='objet' value='article' />
+         <input type='hidden' name='id_forum' value='' />
+         <input type='hidden' name='arg' value='' />
+         <input type='hidden' name='hash' value='' />
+         <input type='hidden' name='verif_' value='ok' />
+         <input type='hidden' name='autosave' class='autosaveactive' value='forum_9f8291331c2d8b8cef68cf49c8896a4f' /><script type="text/javascript">/*<![CDATA[*/if (window.jQuery) jQuery(function(){
+              $("input.autosaveactive").closest("form:not(.autosaveon)").autosave({url:"http://agasaro.rw/"}).addClass("autosaveon");
+                });/*]]>*/</script></div>
+    <input type="hidden" name="id_forum" value="0" />
+    
+    
+    
+    
+     
+    
+        
+    
+        <fieldset>
+        <legend>Your post</legend>
+         
+        <input type="hidden" name="titre" id="titre" value="Indwara zandurira mu mibonano mpuzabitsina zafatiwe ingamba" />
+        <ul>
+        
+    
+    
+    
+    <li class='editer saisie_texte obligatoire'>
+            <!--<label for='texte'>Text of your message (Required)</label>-->
+            
+            <textarea name="texte" id="texte" rows="10" cols="100"></textarea>
+            <p class='explication'>To create paragraphs, just leave blank lines.</p>
+        </li>
+    
+        </ul></fieldset>
+        
+        <fieldset class="qui saisie_qui">
+    <!--<legend>Who are you?</legend>-->
+    
+     
+        <ul>
+            <li class='editer saisie_session_nom'>
+                <label for="session_nom">Your name</label>
+                <input type="text" class="text" name="session_nom" id="session_nom" value="" size="40" autocapitalize="off" autocorrect="off" />
+                
+            </li>
+            <li class='editer saisie_session_email'>
+                <label for="session_email">Your email address</label>
+                <input type="text" class="text email" name="session_email" id="session_email" value="" size="40" autocapitalize="off" autocorrect="off" />
+            </li>
+    
+        </ul>
+    
+    </fieldset>	
+        <fieldset class="moderation_info info" style="display: none;">
+        <!--<legend>pre-moderation</legend>-->
+        <p class="explication"> This forum is moderated before publication: your contribution will only appear after being validated by an administrator.</p>
+    </fieldset>
+    
+    
+    
+        
+         
+        <p style="display: none;">
+            <label for="nobot_forum">Please leave this field empty:</label>
+            <input type="text" class="text" name="nobot" id="nobot_forum" value="" size="10" />
+        </p>
+        
+        <p class="boutons"><input type="submit" class="submit" value="Preview" /></p>
+    
+    </div>
+    </form>
+    
+    
+    </div>
+        </div> 
+    
+    
+                <div class="sharedspacer"><!--sharedspacer--></div>
+    
+    </div>
+    </div>
+    </div>
+    <!--Left Navigation-->
+    <div id="leftcol" class="col-md-3 col-md-pull-9">
+    
+    <ul id="leftnav"><li><h3 class="heading heading_left_nav">Other Stories</span></h3></li>
+        {% for article in articles %}
+              <li><a href="{% url 'article_detail' article.pk %}"><span>{{ article.title }}</span><small style="text-align:right; font-size:10px;"><span>Uploaded on:&nbsp;20-12-2021</small></span></a></li>
+              
+        {% endfor%}
+    </ul>
+    
+    
+    </div>
+    <!--/Left Navigation-->
+    
+    
+    
+    </div></div></section>
+</main>
+{% endblock %}

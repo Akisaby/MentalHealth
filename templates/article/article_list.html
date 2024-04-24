@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        <main>
+            <!--Latest News section-->
+            <header class="clfx">
+                <div class="container clfx">
+               </div>
+            </header>
+             <section class="clfx makuru_layout_3 home_container">
+                <div class="container">
+    
+                    <div id="home_makuru_list_wrap">
+                        <div id="home_makuru_list">
+                            <div class="item container row clfx" style="padding-bottom:20px;">
+                                {% for article in articles %}
+                                <div class="item">
+                                    <article>
+                                        <a href="{% url 'article_detail' article.pk %}">
+                                            <span class="inner">
+                                                <span class="image">
+                                                    <img class='spip_logo spip_logos' alt="" src="{{ article.image.url }}" width='265' height='214' />    
+                                                </span>
+                                                <span class="desc">
+                                                    <h4 class="ellipsis">{{ article.title }}</h4>
+                                                    <span class="date">1:453 </span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </article>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!--/home_makuru_list-->
+                        <div id="home_makuru_list_footer">
+                        </div>
+                        <!--/home_blog_list_footer-->
+                    </div>
+                    <!--/home_blog_list_wrap-->
+                </div>
+                <!--/container-->
+            </section>
+    
+            <!--Latest News mobile section-->
+    
+            <section class="formobile">
+            <div class="container">
+                {% for article in articles %}
+             <article class="clfx" style="margin-bottom:8px;">
+                <a href="" title="">
+                <span style=" float:left;"><img class='spip_logo spip_logos' alt="" src="{{ article.image.url }}" width='122' height='99' /></span>							
+               <div class="" style=" float:leftt; ">
+               <h6 class="date"></h6>
+               <h4 class="ellipsis">{{ article.title }}</h4></span></span>
+                 </div>
+                </a>
+                </article>
+                {% endfor %}
+                </div>
+            </section>
+        </main>
+        <!-- {% for article in articles %}
+            <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
+        {% endfor %} -->
+    </ul>
+{% endblock %}
