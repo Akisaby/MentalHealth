@@ -1,262 +1,28 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>welcome to Mental Health Awareness system</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="index,follow" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="google-site-verification" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="{% static 'css/bootstrap_min.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-    <meta name="fid" content="0" />
-    <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/852f05fa-3efd-4e61-9f68-aa44656ccc48.css" />
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
-    <link href="{% static 'css/stylestmary.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/bootstrap_min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/stylestmary.css' %}" rel="stylesheet" type="text/css" />
-    <script src="{% static 'js/jquery_min.js' %}"></script>
-    <script src="{% static 'js/custonavs.js' %}"></script>
-    <stlye>
-    <link rel="stylesheet" type="text/css" href="search1.css" />
-    </stlye>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Awareness</title>
 
-
-    <style>
-        @media (max-width: 767px) {
-            .makuru_layout_3 {
-                display: none;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .formobile {
-                display: none;
-            }
-        }
-    </style>
-    
-    <style>
-        #header_logo {
-            width: 70%;
-        }
-
-        #header_search {
-            width: 30%;
-            background-color: #3366CC;
-            margin-bottom: 0px;
-        }
-
-        #formulaire_recherche {}
-
-        .formulaire_spip formulaire_recherche {}
-    </style>
-
-    <style>
-        .forlargescreens .myarticles .container .item article a .inner:hover .image .overlay {
-            filter: alpha(opacity=100);
-            opacity: 1;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0
-        }
-    </style>
-
-    <style>
-        .makuru_layout_3 {
-            background: #f8f8f9;
-            padding-bottom: 10px;
-            text-align: center;
-            margin: auto
-        }
-
-        .makuru_layout_3 #home_makuru_list .item {
-            margin: 0;
-            padding: 0;
-            list-style: none
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article {
-            max-width: 260px;
-            float: left;
-            margin-right: 15px;
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a {
-            display: block;
-            background: #fff
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner {
-            display: block;
-            text-align: left
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image {
-            position: relative;
-            display: block;
-            width: 100%;
-            min-height: 260px;
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image img,
-        .events_makuru #home_makuru_list .item article a .inner .image img {
-            width: 100%
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 0;
-            height: 0;
-            padding: 15px;
-            z-index: 1;
-            overflow: hidden;
-            background-color: #000;
-            background-color: rgba(0, 0, 0, 0.6);
-            filter: alpha(opacity=0);
-            opacity: 0;
-            transition: all 0.2s ease-in-out;
-            -webkit-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner:hover .image .overlay {
-            filter: alpha(opacity=100);
-            opacity: 1;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner {
-            height: 100%;
-            width: 100%;
-            color: #fff;
-            text-align: center;
-            display: table;
-            border: solid 1px #e6a432
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner span {
-            display: table-cell;
-            vertical-align: middle;
-            font-family: 'Gudea', sans-serif;
-            font-size: 17px
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .desc {
-            padding: 15px;
-            display: block
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .desc h4 {
-            margin: 0;
-            padding: 0;
-            overflow: visible;
-            font-size: 20px;
-            line-height: 24px;
-            color: #292b29;
-            height: 60px;
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .desc .date {
-            display: block;
-            font-size: 16px;
-            font-family: 'Gudea', sans-serif;
-            color: #aeaeae;
-            margin-bottom: 4px
-        }
-
-        h4:hover {
-            background-color: #F7F7F7;
-        }
-    </style>
-<style>
-    .makuru_layout_3{background: #f8f8f9;padding-bottom: 10px;text-align:center; margin:auto}
-    .makuru_layout_3 #home_makuru_list .item{margin: 0;padding: 0;list-style: none}
-    .makuru_layout_3 #home_makuru_list .item article{max-width: 260px;float:left; margin-right:15px;}
-    .makuru_layout_3 #home_makuru_list .item article a{display: block;background: #fff}
-    .makuru_layout_3 #home_makuru_list .item article a .inner{display: block;text-align: left}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image{position: relative;display: block;width: 100%; min-height: 260px;}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image img,.events_makuru #home_makuru_list .item article a .inner .image img{width: 100%}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay{position: absolute;left: 50%;top: 50%;width: 0;height: 0;padding: 15px;z-index: 1;overflow: hidden;background-color: #000;background-color: rgba(0,0,0,0.6);filter: alpha(opacity=0);opacity: 0;transition: all 0.2s ease-in-out;-webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out}
-    .makuru_layout_3 #home_makuru_list .item article a .inner:hover .image .overlay{filter: alpha(opacity=100);opacity: 1;width: 100%;height: 100%;left: 0;top: 0}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner{height: 100%;width: 100%;color: #fff;text-align: center;display: table;border: solid 1px #e6a432}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner span{display: table-cell;vertical-align: middle;font-family: 'Gudea',sans-serif;font-size: 17px}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .desc{padding: 15px;display: block}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .desc h4{margin: 0;padding: 0;overflow: hidden;font-size: 20px;line-height: 24px;color: #292b29;height: 48px}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .desc .date{display: block;font-size: 16px;font-family: 'Gudea',sans-serif;color: #aeaeae;margin-bottom: 4px}
-</style>
-
-
+        <link rel ="stylesheet"  href ="index.css">
 </head>
-
-<body class=" home">
-    <div id="header_wrap">
-        <header class="clfx">
-            <div class="container clfx">
-             <a id="header_logo" href="/">
-                <img src="{% static 'images/logo.png' %}"/>
-             </a>
-                <div class="formsearchokok">
-                    <div class="formulaire_spip formulaire_recherche" id="formulaire_recherche">
-                        <form action="spip.php?page=recherche" method="get" class="form_search">
-                            <div>
-                                <input name="page" value="recherche" type="hidden" />
-                                <table width="173" height="22" border="0" cellspacing="0" cellpadding="0" align="right">
-                                    <tr>
-                                        <td valign="middle" width="147" height="23" class="search_bg">
-                                            <input type="text" class="search_tf" name="recherche" id="recherche" onfocus="if(this.value=='&nbsp;Search') this.value='';" onblur="if(this.value==''){this.value='&nbsp;Click To Search';};" value="&nbsp;Search" 
-                                            
-                                            accesskey="4" autocapitalize="off" autocorrect="off"
-                                            />
-                                        </td>
-                                        <td valign="middle" width="26" height="23" align="right">
-                                            <input type="image" class="search_bt" src="media/article_images/search.jpg" height="12px" width="35px" title="Search" id="searchbutton" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div id="header_right" class="clfx">
-                    <div class="show_hide_mobile">
-                        <a href="#" class="icon_spin txt">Ibirimo<i class="first-icon fa fa-bars"></i> <i class="second-icon fa fa-times"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <nav id="main_nav">
-                <ul class="clfx container">
-                    <li class="first"><a href="/"><span>Home</span></a></li>
-                    <li class="first"><a href="#"><span>Book Therapist</span></a></li>
-                    <li class="sub"><a href="#"><span>Blogs</span></a>
-                        <ul>
-                            <li><a href="#">MY story<span></span></a></li>
-                            <li><a href="#"><span>Communities</span></a></li>
-                        </ul>
-                    
-                    
-                    </li> 
-                    <li class="login"><a href="login.html" class="largespace">Login</a></li>
-                
-
-                </ul>
-            </nav>
-            <h1>Welcome to Mental Health Awareness</h1>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><img src="images/logo.jpeg" alt="Contact Map" class="logo"> </li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="therapysession.html">Online Therapy</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome to Mental Health Awareness</h1>
         <h1>Login</h1>
         <form id="loginForm" action="#" method="post">
             <label for="username">Username:</label>
@@ -270,58 +36,38 @@
         </form>
         <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         <!-- Add content here -->
-        </header>
-    </div>
- <nav id="mobile_nav"></nav>
- {% block content %}
+    </main>
 
 
- {% endblock %}
+
+    </body>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>About Us</h3>
+                    <p>A brief description of your organization and its mission.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Contact Us</h3>
+                    <p>Email: contact@example.com</p>
+                    <p>Phone: +1-123-456-7890</p>
+                    <p>Address: 123 Street, City, Country</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <a href="#" class="social-icon"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#" class="social-icon"><img src="images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="#" class="social-icon"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="#" class="social-icon"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-bar"><br>
+            <p>&copy; 2024 Mental Health Project. All Rights Reserved.</p>
+        </div>
+    </footer>
     
-<footer class="clfx">
-    <div class="container">
-        <div class="row">
-            <!-- About Us Widget -->
-            <div class="col-sm-4">
-                <h4>About Us</h4>
-                <p>Description of the company, its missions, and values. Learn more about our team and our story.</p>
-            </div>
-
-            <!-- Contact Info Widget -->
-            <div class="col-sm-4">
-                <h4>Contact Info</h4>
-                <ul>
-                    <li><strong>Email:</strong> contact@yourwebsite.com</li>
-                    <li><strong>Phone:</strong> +123 456 7890</li>
-                    <li><strong>Address:</strong> 1234 Street Rd., City, Country</li>
-                </ul>
-            </div>
-
-            <!-- Follow Us Widget -->
-            <div class="col-sm-4">
-                <h4>Follow Us</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Copyright Section -->
-        <div class="row">
-            <div class="col-sm-12">
-                <nav id="footer_nav">
-                    <p>© 2024 Mental Health. All rights reserved.</p>
-                </nav>
-            </div>
-        </div>
-    </div>
-</footer>
-
-    <script src="{% static 'js/custonavs.js' %}"></script>
-
-    <!-- SPIP-CRON -->
-   </body>
-
 </html>
