@@ -14,3 +14,10 @@ def article_detail(request, pk):
 
 def login_view(request):
     return render(request, 'login.html')
+
+def signup_view(request):
+    return render(request, 'signup.html')
+
+def pricing_view(request):
+    return render(request, 'pricing.html')
+

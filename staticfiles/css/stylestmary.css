@@ -566,7 +566,13 @@
      margin: 0;
      padding: 0;
      background-color: #fff;
-     min-width: 320px !important
+     min-width: 320px !important;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh; /* This ensures the content is centered vertically on the page */
+     margin: 0;
+     background-color: #f0f0f0;
  }
 
  div,
@@ -838,7 +844,12 @@
      /*40*/
      .container {
          padding: 0;
-         width: 100%
+         width: 100%;
+         text-align: center;
+         background-color: #ffffff; /* Optional container background color */
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
      }
      /*41*/
      #middlecol {
@@ -7006,37 +7017,4 @@ footer a:hover {
 
 
 
-.form-group {
-    margin-bottom: 20px;
-}
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-textarea {
-    resize: vertical;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
-}

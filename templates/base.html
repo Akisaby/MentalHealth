@@ -23,6 +23,7 @@
     <link href="{% static 'css/stylestmary.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/bootstrap_min.css' %}" rel="stylesheet">
     <link href="{% static 'css/stylestmary.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
     <script src="{% static 'js/jquery_min.js' %}"></script>
     <script src="{% static 'js/custonavs.js' %}"></script>
     <stlye>
@@ -55,7 +56,8 @@
             margin-bottom: 0px;
         }
 
-        #formulaire_recherche {}
+        #formulaire_recherche { 
+        }
 
         .formulaire_spip formulaire_recherche {}
     </style>
@@ -252,7 +254,8 @@
                     
                     
                     </li> 
-                    <li class="login"><a href="/login" class="largespace">Login</a></li>
+                    <li class="pricing"><a href="{% url 'pricing' %}"class="largespace">Pricing</a></li>
+                    <li class="login"><a href="{% url 'login' %} "class="largespace">Login</a></li>
                 
 
                 </ul>
