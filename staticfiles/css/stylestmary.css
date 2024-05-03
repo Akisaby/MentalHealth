@@ -667,7 +667,6 @@
  a.back_button:hover i {
      color: #2e4b95
  }
- 
 
  /*24*/
 
@@ -2939,7 +2938,7 @@
      border-spacing: 2px;
      border-collapse: separate;
      width: 100%;
-     font-family:
+     font-family: 'Gudea', sans-serif;
  }
 
  .default_table th {
@@ -2954,7 +2953,7 @@
  }
 
  .default_table td {
-     font-family:
+    font-family: 'Gudea', sans-serif;
  }
 
  .default_table tr:first-child td {
@@ -6899,7 +6898,7 @@
 
  .google-maps {
      position: relative;
-     padding-bottom: 75%; // This is the aspect ratio
+     padding-bottom: 75%;
      height: 0;
      overflow: hidden;
  }
@@ -7002,4 +7001,42 @@ footer a:hover {
     #footer_nav p {
         text-align: center; /* Ensures text is centered on all screen sizes */
     }
+}
+
+
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
 }

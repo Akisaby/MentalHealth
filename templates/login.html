@@ -1,32 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Awareness</title>
 
-        <link rel ="stylesheet"  href ="index.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><img src="images/logo.jpeg" alt="Contact Map" class="logo"> </li>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="blog.html">Blogs</a></li>
-                <li><a href="therapysession.html">Online Therapy</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'base.html' %}
+{% block content %}
     <main>
-        <h1>Welcome to Mental Health Awareness</h1>
+        <!-- <h1>Welcome to Mental Health Awareness</h1> -->
         <h1>Login</h1>
         <form id="loginForm" action="#" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
+            <br></br>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
@@ -38,36 +19,4 @@
         <!-- Add content here -->
     </main>
 
-
-
-    </body>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>About Us</h3>
-                    <p>A brief description of your organization and its mission.</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Contact Us</h3>
-                    <p>Email: contact@example.com</p>
-                    <p>Phone: +1-123-456-7890</p>
-                    <p>Address: 123 Street, City, Country</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Follow Us</h3>
-                    <ul class="social-icons">
-                        <a href="#" class="social-icon"><img src="images/facebook-icon.png" alt="Facebook"></a>
-                        <a href="#" class="social-icon"><img src="images/twitter-icon.png" alt="Twitter"></a>
-                        <a href="#" class="social-icon"><img src="images/instagram-icon.png" alt="Instagram"></a>
-                        <a href="#" class="social-icon"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="bottom-bar"><br>
-            <p>&copy; 2024 Mental Health Project. All Rights Reserved.</p>
-        </div>
-    </footer>
-    
-</html>
+{% endblock %}
