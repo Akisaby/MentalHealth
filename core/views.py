@@ -21,3 +21,9 @@ def signup_view(request):
 def pricing_view(request):
     return render(request, 'pricing.html')
 
+
+def therapist_view(request):
+    return render(request, 'therapist.html')
+
+def therapistform_view(request):
+    return render(request, 'therapistform.html')
