@@ -15,6 +15,8 @@ urlpatterns = [
     path('pricing/', views.pricing_view, name='pricing'),
     path('therapist/', views.therapist_view, name='therapist'),
     path('therapistform/', views.therapistform_view, name='therapistform'),
+    path('passrecovery/', views.passrecovery_view, name='passrecovery'),
+    path('about/', views.about_view, name='about'),
 
     
 ]

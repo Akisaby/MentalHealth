@@ -27,3 +27,9 @@ def therapist_view(request):
 
 def therapistform_view(request):
     return render(request, 'therapistform.html')
+
+def passrecovery_view(request):
+    return render(request, 'passrecovery.html')
+
+def about_view(request):
+    return render(request, 'about.html')
