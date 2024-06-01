@@ -6,6 +6,11 @@ urlpatterns = [
  
     path('', views.article_list, name='article_list'),  # Example view
     path('article/<int:pk>/', views.article_detail, name='article_detail'),
+    path('article/categories/', views.category_list, name='category_list'),
+    path('category/<str:category_name>/', views.article_by_category, name='article_by_category'),
+
+
+
     path('therapists/', views.therapist_list, name='therapist_list'),
     path('therapists/<int:therapist_id>/', views.therapist_detail, name='therapist_detail'),
     path('therapists/<int:therapist_id>/book/', views.book_therapist, name='book_therapist'),

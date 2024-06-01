@@ -12,26 +12,30 @@
     
                     <div id="home_makuru_list_wrap">
                         <div id="home_makuru_list">
-                            <div class="item container row clfx" style="padding-bottom:20px;">
-                                {% for article in articles %}
-                                <div class="item">
-                                    <article>
-                                        <a href="{% url 'article_detail' article.pk %}">
-                                            <span class="inner">
-                                                <span class="image">
-                                                    <img class='spip_logo spip_logos' alt="" src="{{ article.image.url }}" width='265' height='214' />    
-                                                </span>
-                                                <span class="desc">
-                                                    <h4 class="ellipsis">{{ article.title }}</h4>
-                                                    
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </article>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+                            <h2>Articles in category <b>{{ category_name }}</b></h2>
+    {% if articles %}
+        <div class="item container row clfx" style="padding-bottom:20px;">
+            {% for article in articles %}
+                <div class="item">
+                    <article>
+                        <a href="{% url 'article_detail' article.pk %}">
+                            <span class="inner">
+                                <span class="image">
+                                    <img class='spip_logo spip_logos' alt="" src="{{ article.image.url }}" width='265' height='214' />    
+                                </span>
+                                <span class="desc">
+                                    <h4 class="ellipsis">{{ article.title }}</h4>
+                                </span>
+                            </span>
+                        </a>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Sorry, no articles posted in this category.</p>
+    {% endif %}
+</div>
                         <!--/home_makuru_list-->
                         <div id="home_makuru_list_footer">
                         </div>
