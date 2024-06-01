@@ -1,0 +1,17 @@
+<!-- templates/therapist_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ therapist.names }}</title>
+</head>
+<body>
+    <h1>{{ therapist.names }}</h1>
+    <img src="{{ therapist.profile_picture.url }}" alt="{{ therapist.names }}">
+    <p>{{ therapist.bio }}</p>
+    <p>{{ therapist.telephone }}</p>
+    <p>{{ therapist.email }}</p>
+    <a href="{% url 'book_therapist' therapist.id %}">Book This Therapist</a>
+</body>
+</html>
