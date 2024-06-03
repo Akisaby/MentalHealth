@@ -6,7 +6,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>welcome to Empowering Minds  system</title>
+    <title>welcome to Mental Health awareness system</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="index,follow" />
@@ -213,28 +213,6 @@
              <a id="header_logo" href="/">
                 <img src="{% static 'images/logo.png' %}"/>
              </a>
-                <div class="formsearchokok">
-                    <div class="formulaire_spip formulaire_recherche" id="formulaire_recherche">
-                        <form action="spip.php?page=recherche" method="get" class="form_search">
-                            <div>
-                                <input name="page" value="recherche" type="hidden" />
-                                <table width="173" height="22" border="0" cellspacing="0" cellpadding="0" align="right">
-                                    <tr>
-                                        <td valign="middle" width="147" height="23" class="search_bg">
-                                            <input type="text" class="search_tf" name="recherche" id="recherche" onfocus="if(this.value=='&nbsp;Search') this.value='';" onblur="if(this.value==''){this.value='&nbsp;Click To Search';};" value="&nbsp;Search" 
-                                            
-                                            accesskey="4" autocapitalize="off" autocorrect="off"
-                                            />
-                                        </td>
-                                        <td valign="middle" width="26" height="23" align="right">
-                                            <input type="image" class="search_bt" src="media/article_images/search.jpg" height="12px" width="35px" title="Search" id="searchbutton" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <div id="header_right" class="clfx">
                     <div class="show_hide_mobile">
                         <a href="#" class="icon_spin txt">Ibirimo<i class="first-icon fa fa-bars"></i> <i class="second-icon fa fa-times"></i></a>
@@ -246,16 +224,18 @@
                 <ul class="clfx container">
                     <li class="first"><a href="/"><span>Home</span></a></li>
                     <li class="therapist"><a href="{% url 'therapist_list' %} "class="largespace">Therapist</a></li>
-                    <li class="sub"><a href="#"><span>Category</span></a>
-                    
+                    <li class="sub">
+                        <a href="#"><span>Categories</span></a>
                         <ul>
-                            <li><a href="#">Inkuru yanjye<span></span></a></li>
-                            <li><a href="#"><span>Nganiriza</span></a></li>
+                            {% for category in categories %}
+                                <li><a href="{% url 'article_by_category' category %}">{{ category }}</a></li>
+                            {% endfor %}
                         </ul>
-                    
-                    
-                    </li> 
+ </li> 
                   
+
+                    </li>
+                    
                     <li class="about"><a href="{% url 'about' %} "class="largespace">About Us</a></li>
                     <li class="login"><a href="{% url 'login' %} "class="largespace">Login</a></li>
                     
@@ -266,6 +246,7 @@
         </header>
     </div>
  <nav id="mobile_nav"></nav>
+
  {% block content %}
 
 

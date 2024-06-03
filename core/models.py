@@ -15,13 +15,27 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-
 class Article(models.Model):
+    DEPRESSION = 'Depression'
+    ANXIETY = 'Anxiety'
+    STRESS_MANAGEMENT = 'Stress Management'
+    MINDFULNESS_MEDITATION = 'Mindfulness and Meditation'
+    TRAUMATIC_DISORDER = 'Traumatic Disorder'
+
+    CATEGORY_CHOICES = [
+        (DEPRESSION, 'Depression'),
+        (ANXIETY, 'Anxiety'),
+        (STRESS_MANAGEMENT, 'Stress Management'),
+        (MINDFULNESS_MEDITATION, 'Mindfulness and Meditation'),
+        (TRAUMATIC_DISORDER, 'Traumatic Disorder'),
+    ]
+
     title = models.CharField(max_length=255)
     content = models.TextField()
     image = models.ImageField(upload_to='article_images/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default=DEPRESSION)
 
     def __str__(self):
         return self.title

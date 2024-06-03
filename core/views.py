@@ -23,15 +23,18 @@ from .models import Therapist, Booking
 from django.utils import timezone
 
 def therapist_list(request):
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapists = Therapist.objects.all()
-    return render(request, 'therapist/therapist_list.html', {'therapists': therapists})
+    return render(request, 'therapist/therapist_list.html', {'therapists': therapists,'categories':categories})
 
 def therapist_detail(request, therapist_id):
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapist = get_object_or_404(Therapist, pk=therapist_id)
-    return render(request, 'therapist/therapist_detail.html', {'therapist': therapist})
+    return render(request, 'therapist/therapist_detail.html', {'therapist': therapist,'categories':categories})
 
 @login_required
 def book_therapist(request, therapist_id):
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapist = get_object_or_404(Therapist, pk=therapist_id)
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -59,24 +62,10 @@ def book_therapist(request, therapist_id):
         # Redirect to a success page
         return redirect('booking_confirmation')
 
-    return render(request, 'therapist/booking.html', {'therapist': therapist})
+    return render(request, 'therapist/booking.html', {'therapist': therapist,'categories':categories})
 
 def booking_confirmation(request):
     return render(request, 'therapist/booking_confirmation.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def password_reset_request(request):
@@ -105,6 +94,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "registration/password_reset_confirm.html"
     success_url = "/login/"
 
+from django.contrib import messages
 
 def register(request):
     if request.method == 'POST':
@@ -112,11 +102,17 @@ def register(request):
         email = request.POST['email']
         username = request.POST['username']
         password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
         telephone = request.POST['telephone']
 
-        user = User.objects.create_user(full_name=full_name, email=email, username=username, password=password, telephone=telephone)
-        auth_login(request, user)  # Use auth_login to avoid conflict with the view name
-        return redirect('login')  # Redirect to your home page
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match")
+            return render(request, 'registration/register.html')
+        else:
+            user = User.objects.create_user(full_name=full_name, email=email, username=username, password=password, telephone=telephone)
+            auth_login(request, user)  # Use auth_login to avoid conflict with the view name
+            return redirect('login')  # Redirect to your home page
+
     return render(request, 'registration/register.html')
 
 def login(request):
@@ -138,14 +134,34 @@ def custom_logout(request):
 
 
 def article_list(request):
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     articles = Article.objects.all()
-    return render(request, 'article/article_list.html',{'articles': articles})
+    return render(request, 'article/article_list.html',{'articles': articles,'categories':categories})
 
 def article_detail(request, pk):
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     article = get_object_or_404(Article, pk=pk)
     articles = Article.objects.all()
-    context ={'articles': articles,'article': article}
+    context ={'articles': articles,'article': article,'categories':categories}
     return render(request, 'article/article_detail.html',context)
+
+def category_list(request):
+    # Retrieve all categories from the database
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
+    return render(request, 'article/category_list.html', {'categories': categories})
+
+def article_by_category(request, category_name):
+    # Retrieve articles based on the selected category
+    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
+    articles = Article.objects.filter(category=category_name)
+    return render(request, 'article/article_by_category.html', {'articles': articles, 'categories': categories})
+
+
+
+
+
+
+
 
 def pricing_view(request):
     return render(request, 'pricing.html')
@@ -162,3 +178,4 @@ def passrecovery_view(request):
 
 def about_view(request):
     return render(request, 'about.html')
+
