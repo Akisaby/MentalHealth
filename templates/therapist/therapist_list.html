@@ -3,6 +3,8 @@
 {% block content %}
 
 
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +30,8 @@
                 <div class="col-lg-4 col-md-12 mb-4">
                   <div class="card">
                     <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-                      <img src="{{ therapist.profile_picture.url }}" class="img-fluid" alt="{{ therapist.names }}"/>
+               <img src="{{ therapist.profile_picture.url }}" class="img-fluid" alt="{{ therapist.names }}"/>
+                    </img>
                       <a href="{% url 'therapist_detail' therapist.id %}">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                       </a>

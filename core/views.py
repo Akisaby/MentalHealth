@@ -32,8 +32,10 @@ def therapist_detail(request, therapist_id):
     therapist = get_object_or_404(Therapist, pk=therapist_id)
     return render(request, 'therapist/therapist_detail.html', {'therapist': therapist,'categories':categories})
 
-@login_required
 def book_therapist(request, therapist_id):
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+
     categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapist = get_object_or_404(Therapist, pk=therapist_id)
     if request.method == 'POST':
@@ -122,7 +124,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)  # Use auth_login to avoid conflict with the view name
-            return redirect('therapist')  # Redirect to your home page
+            return redirect('therapist_list')  # Redirect to your home page
         else:
             # Handle invalid login
             return render(request, 'registration/login.html', {'error_message': 'Invalid username or password.'})
@@ -134,9 +136,10 @@ def custom_logout(request):
 
 
 def article_list(request):
+    user = User.objects.all()
     categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     articles = Article.objects.all()
-    return render(request, 'article/article_list.html',{'articles': articles,'categories':categories})
+    return render(request, 'article/article_list.html',{'articles': articles,'categories':categories,'user':user})
 
 def article_detail(request, pk):
     categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']

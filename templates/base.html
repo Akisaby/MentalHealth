@@ -237,10 +237,11 @@
                     </li>
                     
                     <li class="about"><a href="{% url 'about' %} "class="largespace">About Us</a></li>
-                    <li class="login"><a href="{% url 'login' %} "class="largespace">Login</a></li>
-                    
-                
-
+                    {% if user.is_authenticated %}
+                    <li class="logout"><a href="{% url 'logout' %}" class="largespace">Logout</a></li>
+                   {% else %}
+                    <li class="login"><a href="{% url 'login' %}" class="largespace">Login</a></li>
+                   {% endif %}
                 </ul>
             </nav>
         </header>
