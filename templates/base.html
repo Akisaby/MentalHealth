@@ -1,302 +1,83 @@
-
-{% load static %}
-
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>welcome to Mental Health awareness system</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="index,follow" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="google-site-verification" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="{% static 'css/bootstrap_min.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-    <meta name="fid" content="0" />
-    <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/852f05fa-3efd-4e61-9f68-aa44656ccc48.css" />
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
-    <link href="{% static 'css/stylestmary.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/bootstrap_min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/stylestmary.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
-    <script src="{% static 'js/jquery_min.js' %}"></script>
-    <script src="{% static 'js/custonavs.js' %}"></script>
-    <stlye>
-    <link rel="stylesheet" type="text/css" href="search1.css" />
-    </stlye>
-
-
-    <style>
-        @media (max-width: 767px) {
-            .makuru_layout_3 {
-                display: none;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .formobile {
-                display: none;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mental Health Awareness{% endblock %}</title>
+    <!-- Add any necessary CSS or external stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ 
     
-    <style>
-        #header_logo {
-            width: 70%;
-        }
-
-        #header_search {
-            width: 30%;
-            background-color: #3366CC;
-            margin-bottom: 0px;
-        }
-
-        #formulaire_recherche { 
-        }
-
-        .formulaire_spip formulaire_recherche {}
-    </style>
-
-    <style>
-        .forlargescreens .myarticles .container .item article a .inner:hover .image .overlay {
-            filter: alpha(opacity=100);
-            opacity: 1;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0
-        }
-    </style>
-
-    <style>
-        .makuru_layout_3 {
-            background: #f8f8f9;
-            padding-bottom: 10px;
-            text-align: center;
-            margin: auto
-        }
-
-        .makuru_layout_3 #home_makuru_list .item {
-            margin: 0;
-            padding: 0;
-            list-style: none
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article {
-            max-width: 260px;
-            float: left;
-            margin-right: 15px;
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a {
-            display: block;
-            background: #fff
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner {
-            display: block;
-            text-align: left
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image {
-            position: relative;
-            display: block;
-            width: 100%;
-            min-height: 260px;
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image img,
-        .events_makuru #home_makuru_list .item article a .inner .image img {
-            width: 100%
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 0;
-            height: 0;
-            padding: 15px;
-            z-index: 1;
-            overflow: hidden;
-            background-color: #000;
-            background-color: rgba(0, 0, 0, 0.6);
-            filter: alpha(opacity=0);
-            opacity: 0;
-            transition: all 0.2s ease-in-out;
-            -webkit-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner:hover .image .overlay {
-            filter: alpha(opacity=100);
-            opacity: 1;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner {
-            height: 100%;
-            width: 100%;
-            color: #fff;
-            text-align: center;
-            display: table;
-            border: solid 1px #e6a432
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner span {
-            display: table-cell;
-            vertical-align: middle;
-            font-family: 'Gudea', sans-serif;
-            font-size: 17px
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .desc {
-            padding: 15px;
-            display: block
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .desc h4 {
-            margin: 0;
-            padding: 0;
-            overflow: visible;
-            font-size: 20px;
-            line-height: 24px;
-            color: #292b29;
-            height: 60px;
-        }
-
-        .makuru_layout_3 #home_makuru_list .item article a .inner .desc .date {
-            display: block;
-            font-size: 16px;
-            font-family: 'Gudea', sans-serif;
-            color: #aeaeae;
-            margin-bottom: 4px
-        }
-
-        h4:hover {
-            background-color: #F7F7F7;
-        }
-    </style>
-<style>
-    .makuru_layout_3{background: #f8f8f9;padding-bottom: 10px;text-align:center; margin:auto}
-    .makuru_layout_3 #home_makuru_list .item{margin: 0;padding: 0;list-style: none}
-    .makuru_layout_3 #home_makuru_list .item article{max-width: 260px;float:left; margin-right:15px;}
-    .makuru_layout_3 #home_makuru_list .item article a{display: block;background: #fff}
-    .makuru_layout_3 #home_makuru_list .item article a .inner{display: block;text-align: left}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image{position: relative;display: block;width: 100%; min-height: 260px;}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image img,.events_makuru #home_makuru_list .item article a .inner .image img{width: 100%}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay{position: absolute;left: 50%;top: 50%;width: 0;height: 0;padding: 15px;z-index: 1;overflow: hidden;background-color: #000;background-color: rgba(0,0,0,0.6);filter: alpha(opacity=0);opacity: 0;transition: all 0.2s ease-in-out;-webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out}
-    .makuru_layout_3 #home_makuru_list .item article a .inner:hover .image .overlay{filter: alpha(opacity=100);opacity: 1;width: 100%;height: 100%;left: 0;top: 0}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner{height: 100%;width: 100%;color: #fff;text-align: center;display: table;border: solid 1px #e6a432}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .image .overlay .overlay_inner span{display: table-cell;vertical-align: middle;font-family: 'Gudea',sans-serif;font-size: 17px}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .desc{padding: 15px;display: block}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .desc h4{margin: 0;padding: 0;overflow: hidden;font-size: 20px;line-height: 24px;color: #292b29;height: 48px}
-    .makuru_layout_3 #home_makuru_list .item article a .inner .desc .date{display: block;font-size: 16px;font-family: 'Gudea',sans-serif;color: #aeaeae;margin-bottom: 4px}
-</style>
-
-
 </head>
-
-<body class=" home">
-    <div id="header_wrap">
-        <header class="clfx">
-            <div class="container clfx">
-             <a id="header_logo" href="/">
-                <img src="{% static 'images/logo.png' %}"/>
-             </a>
-                <div id="header_right" class="clfx">
-                    <div class="show_hide_mobile">
-                        <a href="#" class="icon_spin txt">Ibirimo<i class="first-icon fa fa-bars"></i> <i class="second-icon fa fa-times"></i></a>
-                    </div>
-                </div>
+<body>
+    <header>
+        <div class="cont-header">
+            <div class="logo">
+                <!-- <h1>Mental Health <span>Awareness</span></h1> -->
+                <a id="header_logo" href="/">
+                    <img src="{% static 'images/logo.png' %}" width="350px" height="150px"/>
+                 </a>
             </div>
-
-            <nav id="main_nav">
-                <ul class="clfx container">
-                    <li class="first"><a href="/"><span>Home</span></a></li>
-                    <li class="therapist"><a href="{% url 'therapist_list' %} "class="largespace">Therapist</a></li>
-                    <li class="sub">
-                        <a href="#"><span>Categories</span></a>
-                        <ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'article_list' %}">Articles</a></li>
+                    <li><a href="{% url 'therapist_list' %}">Therapists</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Categories</a>
+                        <div class="dropdown-content">
                             {% for category in categories %}
-                                <li><a href="{% url 'article_by_category' category %}">{{ category }}</a></li>
+                            <a href="{% url 'article_by_category' category %}">{{ category }}</a>
                             {% endfor %}
-                        </ul>
- </li> 
-                  
-
+                        </div>
                     </li>
-                    
-                    <li class="about"><a href="{% url 'about' %} "class="largespace">About Us</a></li>
-                    {% if user.is_authenticated %}
-                    <li class="logout"><a href="{% url 'logout' %}" class="largespace">Logout</a></li>
-                   {% else %}
-                    <li class="login"><a href="{% url 'login' %}" class="largespace">Login</a></li>
-                   {% endif %}
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'about' %}">Feedback</a></li>
                 </ul>
             </nav>
-        </header>
+            
+            {% if user.is_authenticated %}
+    <div class="profile">
+        <div class="dropdown">
+            {% if user.profile.image %}
+           <img src="{{ user.profile.image.url }}" alt="Profile Picture" class="dropbtn"> 
+        {% else %}
+           <img src="{% static 'images/profile.png' %}" alt="Default Profile Picture">
+        {% endif %}
+            <div class="dropdown-content">
+                <a href="{% url 'article_list' %}">My Dashboard</a>
+                <a href="#">My Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
     </div>
- <nav id="mobile_nav"></nav>
+{% else %}
+    <div class="profile">
+        <a href="{% url 'login' %}" class="join-now">JOIN NOW</a>
+    </div>
+{% endif %}
 
- {% block content %}
-
-
- {% endblock %}
+        </div>
+    </header>
     
-<footer class="clfx">
-    <div class="container">
-        <div class="row">
-            <!-- About Us Widget -->
-            <div class="col-sm-4">
-                <li class="about"><a href="{% url 'about' %} "class="largespace">About Us</a></li>
-                <p>Description of the company, its missions, and values. Learn more about our team and our story.</p>
-            </div>
+    <main>
+        
+        {% block content %}
+        
+        {% endblock %}
+    </main>
 
-            <!-- Contact Info Widget -->
-            <div class="col-sm-4">
-                <h4>Contact Info</h4>
-                <ul>
-                    <li><strong>Email:</strong> contact@yourwebsite.com</li>
-                    <li><strong>Phone:</strong> +250722332530  </li>
-                    <li><strong>Address:</strong> 1234 Street Rd., City, Country</li>
-                </ul>
-            </div>
-
-            <!-- Follow Us Widget -->
-            <div class="col-sm-4">
-                <h4>Follow Us On:</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                </ul>
-            </div>
+    <footer>
+        <div class="container">
+            <ul class="menu-footer">
+                <li><a href="{% url 'article_list' %}">Privacy Policy</a></li>
+                <li><a href="{% url 'article_list' %}">Terms of Service</a></li>
+            </ul>
+            <p>&copy; {% now "Y" %} Mental Health. All rights reserved.</p>
         </div>
-        <!-- Copyright Section -->
-        <div class="row">
-            <div class="col-sm-12">
-                <nav id="footer_nav">
-                    <p>© 2024 Mental Health. All rights reserved.</p>
-                </nav>
-            </div>
-        </div>
-    </div>
-</footer>
-
-    <script src="{% static 'js/custonavs.js' %}"></script>
-
-    <!-- SPIP-CRON -->
-   </body>
+    </footer>
+</body>
 
 </html>

@@ -1,125 +1,260 @@
 {% extends 'base.html' %}
+{% block title %}Home - Health Nexus{% endblock %}
+
 {% block content %}
-<main id="module_blog" class="module_inner">
-    <section id="content" class="clfx inner">
-    <div class="container"><div class="row"><div id="middlecol" class="col-md-9 col-md-push-3 hascol_left"><div id="blog_article_wrap"><div class="blog_top clfx">
-        <h1 class="blog_article_title">{{ article.title }}</h1>
-    <div class="blog_top_date_cat"><span class="blog_date">
-        <i class="fa fa-calendar"></i>24-08-2022</span>
-    </div></div><div id="maincol">
-    <div id="main_body">
-        {{ article.content }}
-    </div>
-     
-    <div>
-        <a href="#forum" name="forum" id="forum"></a>			
-        <h3 style="font-family:Rockwell;">C</h3>
-            <div class="formulaire_spip formulaire_forum ajax" id="formulaire_forum">
-    <form action="" method="post" enctype='multipart/form-data'><div>
-    <div><input name="id_article" value="4445" type="hidden"/>
-         <input name="page" value="article" type="hidden"/>
-         <input name='formulaire_action' type='hidden'value='forum' />
-         <input name='formulaire_action_args' type='hidden'value='' />
-         <input type='hidden' name='id_article' value='4445' />
-         <input type='hidden' name='id_objet' value='4445' />
-         <input type='hidden' name='objet' value='article' />
-         <input type='hidden' name='id_forum' value='' />
-         <input type='hidden' name='arg' value='' />
-         <input type='hidden' name='hash' value='' />
-         <input type='hidden' name='verif_' value='ok' />
-         <input type='hidden' name='autosave' class='autosaveactive' value='forum_9f8291331c2d8b8cef68cf49c8896a4f' /><script type="text/javascript">/*<![CDATA[*/if (window.jQuery) jQuery(function(){
-              $("input.autosaveactive").closest("form:not(.autosaveon)").autosave({url:"http://agasaro.rw/"}).addClass("autosaveon");
-                });/*]]>*/</script></div>
-    <input type="hidden" name="id_forum" value="0" />
-    
-    
-    
-    
-     
-    
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Response</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container_cont {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 15px;
+        }h2 {
+	color: #000;
+	font-size: 26px;
+	font-weight: 300;
+	text-align: center;
+	text-transform: uppercase;
+	position: relative;
+	margin: 30px 0 60px;
+}
+h2::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 4px;
+	border-radius: 1px;
+	background: #7ac400;
+	left: 0;
+	right: 0;
+	bottom: -20px;
+}
+.carousel {
+	margin: 50px auto;
+	padding: 0 70px;
+}
+.carousel .item {
+	color: #747d89;
+	min-height: 325px;
+    text-align: center;
+	overflow: hidden;
+}
+.carousel .thumb-wrapper {
+	padding: 25px 15px;
+	background: #fff;
+	border-radius: 6px;
+	text-align: center;
+	position: relative;
+	box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+.carousel .item .img-box {
+	height: 120px;
+	margin-bottom: 20px;
+	width: 100%;
+	position: relative;
+}
+.carousel .item img {	
+	max-width: 100%;
+	max-height: 100%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+.carousel .item h4 {
+	font-size: 18px;
+}
+.carousel .item h4, .carousel .item p, .carousel .item ul {
+	margin-bottom: 5px;
+}
+.carousel .thumb-content .btn {
+	color: #7ac400;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: none;
+    border: 1px solid #7ac400;
+    padding: 6px 14px;
+    margin-top: 5px;
+    line-height: 16px;
+    border-radius: 20px;
+}
+.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+	color: #fff;
+	background: #7ac400;
+	box-shadow: none;
+}
+.carousel .thumb-content .btn i {
+	font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.carousel .carousel-control {
+	height: 44px;
+	width: 40px;
+	background: #7ac400;	
+    margin: auto 0;
+    border-radius: 4px;
+	opacity: 0.8;
+}
+.carousel .carousel-control:hover {
+	background: #78bf00;
+	opacity: 1;
+}
+.carousel .carousel-control i {
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -19px 0 0 0;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    color: #fff;
+	text-shadow: none;
+    font-weight: bold;
+}
+.carousel .item-price {
+	font-size: 13px;
+	padding: 2px 0;
+}
+.carousel .item-price strike {
+	opacity: 0.7;
+	margin-right: 5px;
+}
+.carousel .carousel-control.left i {
+	margin-left: -2px;
+}
+.carousel .carousel-control.right i {
+	margin-right: -4px;
+}
+.carousel .carousel-indicators {
+	bottom: -50px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 4px;
+	border-radius: 50%;
+	border: none;
+}
+.carousel-indicators li {	
+	background: rgba(0, 0, 0, 0.2);
+}
+.carousel-indicators li.active {	
+	background: rgba(0, 0, 0, 0.6);
+}
+.carousel .wish-icon {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 99;
+	cursor: pointer;
+	font-size: 16px;
+	color: #abb0b8;
+}
+.carousel .wish-icon .fa-heart {
+	color: #ff6161;
+}
+.star-rating li {
+	padding: 0;
+}
+.star-rating i {
+	font-size: 14px;
+	color: #ffc000;
+}
+</style>
+<script>
+	$(document).ready(function(){
+		$(".wish-icon i").click(function(){
+			$(this).toggleClass("fa-heart fa-heart-o");
+		});
+	});	
+</script>
+</head>
+<body>
+    <div class="container_cont">
+        <h1><b>{{ article.title }}</b></h1>
+        <!-- <img src="{{ article.image.url }}" class="img-responsive" alt="{{ article.title }}" width="200px" height="100px"> -->
         
-    
-        <fieldset>
-        <legend>Your post</legend>
-         
-        <input type="hidden" name="titre" id="titre" value="Indwara zandurira mu mibonano mpuzabitsina zafatiwe ingamba" />
-        <ul>
-        
-    
-    
-    
-    <li class='editer saisie_texte obligatoire'>
-            <!--<label for='texte'>Text of your message (Required)</label>-->
-            
-            <textarea name="texte" id="texte" rows="10" cols="100"></textarea>
-            <p class='explication'>To create paragraphs, just leave blank lines.</p>
-        </li>
-    
-        </ul></fieldset>
-        
-        <fieldset class="qui saisie_qui">
-    <!--<legend>Who are you?</legend>-->
-    
-     
-        <ul>
-            <li class='editer saisie_session_nom'>
-                <label for="session_nom">Your name</label>
-                <input type="text" class="text" name="session_nom" id="session_nom" value="" size="40" autocapitalize="off" autocorrect="off" />
-                
-            </li>
-            <li class='editer saisie_session_email'>
-                <label for="session_email">Your email address</label>
-                <input type="text" class="text email" name="session_email" id="session_email" value="" size="40" autocapitalize="off" autocorrect="off" />
-            </li>
-    
-        </ul>
-    
-    </fieldset>	
-        <fieldset class="moderation_info info" style="display: none;">
-        <!--<legend>pre-moderation</legend>-->
-        <p class="explication"> This forum is moderated before publication: your contribution will only appear after being validated by an administrator.</p>
-    </fieldset>
-    
-    
-    
-        
-         
-        <p style="display: none;">
-            <label for="nobot_forum">Please leave this field empty:</label>
-            <input type="text" class="text" name="nobot" id="nobot_forum" value="" size="10" />
-        </p>
-        
-        <p class="boutons"><input type="submit" class="submit" value="Preview" /></p>
-    
+        <p>{{ article.content }}</p>
+       
     </div>
-    </form>
-    
-    
-    </div>
-        </div> 
-    
-    
-                <div class="sharedspacer"><!--sharedspacer--></div>
-    
-    </div>
-    </div>
-    </div>
-    <!--Left Navigation-->
-    <div id="leftcol" class="col-md-3 col-md-pull-9">
-    
-    <ul id="leftnav"><li><h3 class="heading heading_left_nav">Other Stories</span></h3></li>
-        {% for article in articles %}
-              <li><a href="{% url 'article_detail' article.pk %}"><span>{{ article.title }}</span><small style="text-align:right; font-size:10px;"><span>Uploaded on:&nbsp;20-12-2021</small></span></a></li>
-              
-        {% endfor%}
-    </ul>
-    
-    
-    </div>
-    <!--/Left Navigation-->
-    
-    
-    
-    </div></div></section>
-</main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Other <b>Stories</b></h2>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+                    <!-- Carousel indicators -->
+                    
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        {% for article in articles %}
+                            <div class="item {% if forloop.first %}active{% endif %}">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="thumb-wrapper">
+                                                <div class="img-box">
+                                                    <img src="{{ article.image.url }}" class="img-responsive" alt="{{ article.title }}">
+                                                </div>
+                                                <div class="thumb-content">
+                                                    <h4>{{ article.title |truncatewords:4 }}</h4>
+                                                    <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary">Read More</a>
+                                                    <!-- Debug information -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Carousel controls -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
+
 {% endblock %}
