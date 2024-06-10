@@ -3,12 +3,13 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
- 
-    path('', views.article_list, name='article_list'),  # Example view
+    path('', views.home, name='home'),  # Example view
+    path('articles', views.article_list, name='article_list'),  # Example view
     path('article/<int:pk>/', views.article_detail, name='article_detail'),
     path('article/categories/', views.category_list, name='category_list'),
     path('category/<str:category_name>/', views.article_by_category, name='article_by_category'),
-
+    path('feedback/',views.feedback, name='feedback'),
+    path('feedback-confirm/',views.feed_confirm, name='feedback-confirm'),
 
 
     path('therapists/', views.therapist_list, name='therapist_list'),
@@ -28,4 +29,13 @@ urlpatterns = [
     path('therapistform/', views.therapistform_view, name='therapistform'),
     path('passrecovery/', views.passrecovery_view, name='passrecovery'),
     path('about/', views.about_view, name='about'),
+
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('therapist-dashboard/', views.therapist_dashboard, name='therapist_dashboard'),
+    path('patient-dashboard/', views.patient_dashboard, name='patient_dashboard'),
+
+    path('bookings_list/', views.bookings_list, name='bookings_list'),
+    path('bookings/', views.view_bookings, name='view_bookings'),
+    path('bookings/<int:booking_id>/confirm/', views.confirm_booking, name='confirm_booking'),
+    path('bookings/<int:booking_id>/reject/', views.reject_booking, name='reject_booking'),
 ]
