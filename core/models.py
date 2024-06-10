@@ -6,14 +6,29 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
+    PATIENT = 'Patient'
+    THERAPIST = 'Therapist'
+
+    ROLE_CHOICES = (
+        (PATIENT, 'Patient'),
+        (THERAPIST, 'Therapist'),
+    )
+
     full_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=20)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default=PATIENT)
 
     # Add any other fields you need
 
+    def promote_to_therapist(self):
+        if self.is_superuser:
+            self.role = self.THERAPIST
+            self.save()
+
     def __str__(self):
         return self.username
+    
 
 class Article(models.Model):
     DEPRESSION = 'Depression'
@@ -41,6 +56,7 @@ class Article(models.Model):
         return self.title
 
 class Therapist(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='therapists/')
     names = models.CharField(max_length=255)
     bio = models.TextField()
@@ -60,3 +76,8 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user.username} booking with {self.therapist.names} on {self.date}"
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    feedback = models.TextField()
+    date_submitted = models.DateTimeField(auto_now_add=True)

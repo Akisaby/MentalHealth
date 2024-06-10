@@ -34,7 +34,7 @@
                         </div>
                     </li>
                     <li><a href="{% url 'about' %}">About Us</a></li>
-                    <li><a href="{% url 'about' %}">Feedback</a></li>
+                    <li><a href="{% url 'feedback' %}">Feedback</a></li>
                 </ul>
             </nav>
             
@@ -42,12 +42,18 @@
     <div class="profile">
         <div class="dropdown">
             {% if user.profile.image %}
-           <img src="{{ user.profile.image.url }}" alt="Profile Picture" class="dropbtn"> 
-        {% else %}
-           <img src="{% static 'images/profile.png' %}" alt="Default Profile Picture">
-        {% endif %}
+                <img src="{{ user.profile.image.url }}" alt="Profile Picture" class="dropbtn">
+            {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="Default Profile Picture">
+            {% endif %}
             <div class="dropdown-content">
-                <a href="{% url 'article_list' %}">My Dashboard</a>
+                {% if user.role == 'Therapist' %}
+                    <a href="{% url 'patient_dashboard' %}">My Dashboard</a>
+                {% elif user.role == 'Patient' %}
+                    <a href="{% url 'therapist_dashboard' %}">My Dashboard</a>
+                {% else %}
+                    <a href="{% url 'therapist_dashboard' %}">My Dashboard</a>  <!-- Handle other roles or admin case -->
+                {% endif %}
                 <a href="#">My Profile</a>
                 <a href="{% url 'logout' %}">Logout</a>
             </div>
@@ -58,6 +64,7 @@
         <a href="{% url 'login' %}" class="join-now">JOIN NOW</a>
     </div>
 {% endif %}
+
 
         </div>
     </header>

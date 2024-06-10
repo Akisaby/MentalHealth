@@ -1,22 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}Home - Health Nexus{% endblock %}
+{% block title %}Home - Health{% endblock %}
 
 {% block content %}
 {% load static %}
     <div class="container">
-        <div class="container">
-            <div class="main-content">
-                <div class="text-content">
-                    <h2>Welcome to Mental Health Awareness</h2>
-                    <!-- <p>The landscape of reproductive health education for teenagers and young adults faces significant challenges, marked by gaps in knowledge, access, and engagement</p> -->
-                    <br><a href="{% url 'therapist_list' %}" class="start-challenge">Reading Articles</a>
-                    <a href="{% url 'therapist_list' %}" class="know-more">Find Therapists</a>
-                </div>
-                <div class="image-content">
-                    <img src="{% static 'images/bg.png' %}" alt="Illustration of people with question marks" width="400px" height="250px">
-                </div>
-            </div>
-        </div><br>
             <h2>Available Articles</h2>
             <div class="quiz-cards">
                 {% for article in articles %}

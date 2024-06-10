@@ -1,71 +1,27 @@
 {% extends 'base.html' %}
+{% block title %}Home - Mental Health{% endblock %}
+
 {% block content %}
-    <ul>
-        <main>
-            <!--Latest News section-->
-            <header class="clfx">
-                <div class="container clfx">
-               </div>
-            </header>
-             <section class="clfx makuru_layout_3 home_container">
-                <div class="container">
-    
-                    <div id="home_makuru_list_wrap">
-                        <div id="home_makuru_list">
-                            <h2>Articles in category <b>{{ category_name }}</b></h2>
-    {% if articles %}
-        <div class="item container row clfx" style="padding-bottom:20px;">
-            {% for article in articles %}
-                <div class="item">
-                    <article>
-                        <a href="{% url 'article_detail' article.pk %}">
-                            <span class="inner">
-                                <span class="image">
-                                    <img class='spip_logo spip_logos' alt="" src="{{ article.image.url }}" width='265' height='214' />    
-                                </span>
-                                <span class="desc">
-                                    <h4 class="ellipsis">{{ article.title }}</h4>
-                                </span>
-                            </span>
-                        </a>
-                    </article>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>Sorry, no articles posted in this category.</p>
-    {% endif %}
-</div>
-                        <!--/home_makuru_list-->
-                        <div id="home_makuru_list_footer">
-                        </div>
-                        <!--/home_blog_list_footer-->
-                    </div>
-                    <!--/home_blog_list_wrap-->
-                </div>
-                <!--/container-->
-            </section>
-    
-            <!--Latest News mobile section-->
-    
-            <section class="formobile">
-            <div class="container">
+{% load static %}
+    <div class="container">
+        <h2>Articles in category <u>{{ category_name }}</u></h2>
+        {% if articles %}
+            <div class="quiz-cards">
                 {% for article in articles %}
-             <article class="clfx" style="margin-bottom:8px;">
-                <a href="" title="">
-                <span style=" float:left;"><img class='spip_logo spip_logos' alt="" src="{{ article.image.url }}" width='122' height='99' /></span>							
-               <div class="" style=" float:leftt; ">
-               <h6 class="date"></h6>
-               <h4 class="ellipsis">{{ article.title }}</h4></span></span>
-                 </div>
-                </a>
-                </article>
-                {% endfor %}
+                <div class="card">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                    
+                    <center><div class="card-content">
+                        <h3>{{ article.title |truncatewords:7 }}</h3>
+                        <p>{{ article.content |truncatewords:8 }}</p>
+                        <a href="{% url 'article_detail' article.pk %}">Read More</a>
+
+                    </div></center>
                 </div>
-            </section>
-        </main>
-        <!-- {% for article in articles %}
-            <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
-        {% endfor %} -->
-    </ul>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>Sorry, no articles posted in this category.</p>
+          {% endif %}
+    </div>
 {% endblock %}

@@ -1,42 +1,64 @@
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404,redirect
-from .models import Article
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from .models import User
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import PasswordResetConfirmView
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from .models import User
-# core/views.py
-from django.shortcuts import render, get_object_or_404, redirect
-from django.core.mail import send_mail
-from django.contrib.auth.decorators import login_required
-from .models import Therapist, Booking
-from django.utils import timezone
+from django.contrib.auth.views import PasswordResetConfirmView
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
+
+from core.forms import FeedbackForm
+from .models import Feedback, User, Therapist, Booking, Article
+
+CATEGORIES = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
+def is_admin(user):
+    return user.is_superuser
+
+def is_therapist(user):
+    return user.role == User.THERAPIST
+
+def is_patient(user):
+    return user.role == User.PATIENT
+
+# Core views
+def home(request):
+    articles = Article.objects.all()
+    therapists = Therapist.objects.all()
+    return render(request, 'article/home.html',
+     {'articles': articles, 'categories': CATEGORIES,'therapists': therapists,})
+
 
 def therapist_list(request):
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapists = Therapist.objects.all()
-    return render(request, 'therapist/therapist_list.html', {'therapists': therapists,'categories':categories})
+    return render(request, 'therapist/therapist_list.html', {'therapists': therapists, 'categories': CATEGORIES})
 
 def therapist_detail(request, therapist_id):
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapist = get_object_or_404(Therapist, pk=therapist_id)
-    return render(request, 'therapist/therapist_detail.html', {'therapist': therapist,'categories':categories})
+    return render(request, 'therapist/therapist_detail.html', {'therapist': therapist, 'categories': CATEGORIES})
 
+@login_required
+def feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.user = request.user
+            feedback.save()
+            return redirect('feedback-confirm')
+    else:
+        form = FeedbackForm()
+    return render(request, 'article/feedback.html', {'form': form})
+
+def feed_confirm(request):
+    return render(request, 'article/feedback_confirm.html')
+
+@login_required
 def book_therapist(request, therapist_id):
-    if not request.user.is_authenticated:
-        return redirect(reverse('login'))
-
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     therapist = get_object_or_404(Therapist, pk=therapist_id)
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -61,14 +83,12 @@ def book_therapist(request, therapist_id):
             fail_silently=False,
         )
 
-        # Redirect to a success page
         return redirect('booking_confirmation')
 
-    return render(request, 'therapist/booking.html', {'therapist': therapist,'categories':categories})
+    return render(request, 'therapist/booking.html', {'therapist': therapist, 'categories': CATEGORIES})
 
 def booking_confirmation(request):
     return render(request, 'therapist/booking_confirmation.html')
-
 
 def password_reset_request(request):
     if request.method == 'POST':
@@ -96,8 +116,6 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "registration/password_reset_confirm.html"
     success_url = "/login/"
 
-from django.contrib import messages
-
 def register(request):
     if request.method == 'POST':
         full_name = request.POST['full_name']
@@ -109,11 +127,16 @@ def register(request):
 
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
-            return render(request, 'registration/register.html')
         else:
-            user = User.objects.create_user(full_name=full_name, email=email, username=username, password=password, telephone=telephone)
-            auth_login(request, user)  # Use auth_login to avoid conflict with the view name
-            return redirect('login')  # Redirect to your home page
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "Email already exists")
+            else:
+                try:
+                    user = User.objects.create_user(full_name=full_name, email=email, username=username, password=password, telephone=telephone)
+                    auth_login(request, user)
+                    return redirect('login')
+                except Exception as e:
+                    messages.error(request, str(e))
 
     return render(request, 'registration/register.html')
 
@@ -123,52 +146,39 @@ def login(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            auth_login(request, user)  # Use auth_login to avoid conflict with the view name
-            return redirect('therapist_list')  # Redirect to your home page
+            auth_login(request, user)
+            if user.is_superuser:
+                return redirect('admin_dashboard')
+            elif user.role == User.THERAPIST:
+                return redirect('therapist_dashboard')
+            else:
+                # Assume other users are patients or unspecified roles
+                return redirect('patient_dashboard')
         else:
-            # Handle invalid login
-            return render(request, 'registration/login.html', {'error_message': 'Invalid username or password.'})
+            messages.error(request, "Invalid username or password.")
     return render(request, 'registration/login.html')
 
 def custom_logout(request):
-    auth_logout(request)  # Use auth_logout to avoid conflict with the view name
+    auth_logout(request)
     return redirect('login')
 
-
 def article_list(request):
-    user = User.objects.all()
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     articles = Article.objects.all()
-    return render(request, 'article/article_list.html',{'articles': articles,'categories':categories,'user':user})
+    return render(request, 'article/article_list.html', {'articles': articles, 'categories': CATEGORIES})
 
 def article_detail(request, pk):
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     article = get_object_or_404(Article, pk=pk)
-    articles = Article.objects.all()
-    context ={'articles': articles,'article': article,'categories':categories}
-    return render(request, 'article/article_detail.html',context)
+    return render(request, 'article/article_detail.html', {'article': article, 'categories': CATEGORIES})
 
 def category_list(request):
-    # Retrieve all categories from the database
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
-    return render(request, 'article/category_list.html', {'categories': categories})
+    return render(request, 'article/category_list.html', {'categories': CATEGORIES})
 
 def article_by_category(request, category_name):
-    # Retrieve articles based on the selected category
-    categories = ['Depression', 'Anxiety', 'Stress Management', 'Mindfulness and Meditation', 'Traumatic Disorder']
     articles = Article.objects.filter(category=category_name)
-    return render(request, 'article/article_by_category.html', {'articles': articles, 'categories': categories})
-
-
-
-
-
-
-
+    return render(request, 'article/article_by_category.html', {'articles': articles, 'categories': CATEGORIES, 'category_name': category_name})
 
 def pricing_view(request):
     return render(request, 'pricing.html')
-
 
 def therapist_view(request):
     return render(request, 'therapist.html')
@@ -182,3 +192,59 @@ def passrecovery_view(request):
 def about_view(request):
     return render(request, 'about.html')
 
+@login_required
+@user_passes_test(is_admin)
+def admin_dashboard(request):
+    # Count therapists
+    num_therapists = Therapist.objects.count()
+
+    num_feeback = Feedback.objects.count()
+
+
+    # Count patients
+    num_patients = User.objects.filter(role=User.PATIENT).count()
+
+    # Count articles
+    num_articles = Article.objects.count()
+
+    # Count bookings
+    num_bookings = Booking.objects.count()
+
+    context = {
+        'total_feedback' : num_feeback,
+        'total_therapists': num_therapists,
+        'total_patients': num_patients,
+        'total_articles': num_articles,
+        'total_bookings': num_bookings,
+    }
+
+
+    return render(request, 'admin-dash/admin_dashboard.html',context )
+
+@login_required
+@user_passes_test(is_therapist)
+def therapist_dashboard(request):
+    return render(request, 'therapist-dash/therapist_dashboard.html')
+
+def bookings_list(request):
+    bookings = Booking.objects.filter(therapist=request.user.therapist)  # Assuming therapist is linked to the request user
+    return render(request, 'therapist-dash/bookings.html', {'bookings': bookings})
+
+def view_bookings(request):
+    bookings = Booking.objects.filter(therapist=request.user.therapist)  # Assuming therapist is linked to the request user
+    return render(request, 'therapist-dash/view_bookings.html', {'bookings': bookings})
+
+def confirm_booking(request, booking_id):
+    booking = Booking.objects.get(id=booking_id)
+    # Add logic to confirm booking (e.g., update status)
+    return redirect('view_bookings')
+
+def reject_booking(request, booking_id):
+    booking = Booking.objects.get(id=booking_id)
+    # Add logic to reject booking (e.g., update status)
+    return redirect('view_bookings')
+
+@login_required
+@user_passes_test(is_patient)
+def patient_dashboard(request):
+    return render(request, 'patient-dash/patient_dashboard.html')
