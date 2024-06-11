@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import PasswordResetForm
@@ -197,19 +198,13 @@ def about_view(request):
 def admin_dashboard(request):
     # Count therapists
     num_therapists = Therapist.objects.count()
-
     num_feeback = Feedback.objects.count()
-
-
     # Count patients
     num_patients = User.objects.filter(role=User.PATIENT).count()
-
     # Count articles
     num_articles = Article.objects.count()
-
     # Count bookings
     num_bookings = Booking.objects.count()
-
     context = {
         'total_feedback' : num_feeback,
         'total_therapists': num_therapists,
@@ -217,14 +212,27 @@ def admin_dashboard(request):
         'total_articles': num_articles,
         'total_bookings': num_bookings,
     }
-
-
     return render(request, 'admin-dash/admin_dashboard.html',context )
 
 @login_required
 @user_passes_test(is_therapist)
 def therapist_dashboard(request):
-    return render(request, 'therapist-dash/therapist_dashboard.html')
+    num_therapists = Therapist.objects.count()
+    num_feeback = Feedback.objects.count()
+    # Count patients
+    num_patients = User.objects.filter(role=User.PATIENT).count()
+    # Count articles
+    num_articles = Article.objects.count()
+    # Count bookings
+    num_bookings = Booking.objects.count()
+    context = {
+        'total_feedback' : num_feeback,
+        'total_therapists': num_therapists,
+        'total_patients': num_patients,
+        'total_articles': num_articles,
+        'total_bookings': num_bookings,
+    }
+    return render(request, 'therapist-dash/therapist_dashboard.html',context)
 
 def bookings_list(request):
     bookings = Booking.objects.filter(therapist=request.user.therapist)  # Assuming therapist is linked to the request user
@@ -247,4 +255,20 @@ def reject_booking(request, booking_id):
 @login_required
 @user_passes_test(is_patient)
 def patient_dashboard(request):
-    return render(request, 'patient-dash/patient_dashboard.html')
+    bookings = Booking.objects.filter(user=request.user)
+    my_bookings = Booking.objects.count()
+    return render(request, 'patient-dash/patient_dashboard.html',{'bookings': bookings, 'my_bookings':my_bookings})
+
+from django.shortcuts import render, redirect
+from .models import Article
+from .forms import ArticleForm
+
+def add_article(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('article_list')  # Redirect to article list page
+    else:
+        form = ArticleForm()
+    return render(request, 'therapist-dash/add_article.html', {'form': form})

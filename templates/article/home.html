@@ -17,7 +17,28 @@
                 </div>
             </div>
         </div><br>
-        <h2><u>Available Therapists</u></h2>
+          <center>  <h2>Available Articles</h2> </center> 
+            <div class="quiz-cards">
+                {% for article in articles|slice:":6"%}
+                <div class="card">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                    
+                    <center><div class="card-content">
+                        <h3>{{ article.title |truncatewords:7 }}</h3>
+                        <p>{{ article.content |truncatewords:8 }}</p>
+                        <a href="{% url 'article_detail' article.pk %}">Read More</a>
+
+                    </div></center>
+
+                </div>
+                {% endfor %}
+                {% if articles|length > 6 %}
+                <div class="view-more">
+                 <a href="{% url 'article_list' %}" class="view-more">View More Aricles</a>
+                 </div>
+                 {% endif %}
+            </div>
+            <h2><u>Available Therapists</u></h2>
             <div class="quiz-cards">
                 {% for therapist in therapists %}
                     <div class="card">
@@ -34,21 +55,5 @@
                     </div>
                 {% endfor %}
             </div><br><br>
-          <center>  <h2>Available Articles</h2> </center> 
-            <div class="quiz-cards">
-                {% for article in articles %}
-                <div class="card">
-                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
-                    
-                    <center><div class="card-content">
-                        <h3>{{ article.title |truncatewords:7 }}</h3>
-                        <p>{{ article.content |truncatewords:8 }}</p>
-                        <a href="{% url 'article_detail' article.pk %}">Read More</a>
-
-                    </div></center>
-                </div>
-                {% endfor %}
-            </div>
-            
     </div>
 {% endblock %}

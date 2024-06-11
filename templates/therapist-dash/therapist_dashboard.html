@@ -76,7 +76,7 @@
             <div class="card bg-c-green order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Total Bookings </h6>
-                    <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>{{total_student}}</span></h2>
+                    <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>{{total_bookings}}</span></h2>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">My Articles</h6>
-                    <h2 class="text-right"><i class="fas fa-pen f-left"></i><span>{{total_course}}</span></h2>
+                    <h2 class="text-right"><i class="fas fa-pen f-left"></i><span>{{total_articles}}</span></h2>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
             <div class="card bg-c-yellow order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Total Patients</h6>
-                    <h2 class="text-right"><i class="fas fa-book f-left"></i><span>{{total_course}}</span></h2>
+                    <h2 class="text-right"><i class="fas fa-book f-left"></i><span>{{total_patients}}</span></h2>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
             <div class="card bg-c-pink order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Feedbacks</h6>
-                    <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_question}}</span></h2>
+                    <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_feedback}}</span></h2>
                 </div>
             </div>
         </div>
@@ -116,25 +116,17 @@
         <table class="table table-hover" id="dev-table">
           <thead>
             <tr>
-              <th>First Names</th>
-              <th>Tephone</th>
-              <th>Age</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Message</th>
-              <th>Status</th>
-
+                <th>Patient</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
           </thead>
           {% for booking in bookings %}
           <tr>
-    
-            <td>yannick {{booking.first_name}}</td>
-            <td> 0874353{{booking.telephone}}</td>
-            <td> 23{{booking.age}}</td>
-            <td> group{{booking.category}}</td>
-            <td>12/01/2024 {{booking.date}}</td>
-            <td> i nedds help{{booking.message}}</td>
+            <td>{{ booking.user.username }}</td>
+            <td>{{ booking.date }}</td>
+            <td>{{ booking.get_status_display }}</td>
             <td> 
                 <form method="post" action="{% url 'confirm_booking' booking.id %}">
                     {% csrf_token %}
