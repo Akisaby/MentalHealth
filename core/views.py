@@ -169,7 +169,8 @@ def article_list(request):
 
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    return render(request, 'article/article_detail.html', {'article': article, 'categories': CATEGORIES})
+    articles = Article.objects.all()
+    return render(request, 'article/article_detail.html', {'article': article, 'articles':articles, 'categories': CATEGORIES})
 
 def category_list(request):
     return render(request, 'article/category_list.html', {'categories': CATEGORIES})
