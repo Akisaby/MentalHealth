@@ -225,7 +225,9 @@ def therapist_dashboard(request):
     num_articles = Article.objects.count()
     # Count bookings
     num_bookings = Booking.objects.count()
+    articles= Article.objects.all()
     context = {
+        'articles':articles,
         'total_feedback' : num_feeback,
         'total_therapists': num_therapists,
         'total_patients': num_patients,
