@@ -180,11 +180,11 @@
 
       <img src="{% static "image/teacher.png" %}" class="profile_image" alt="">
       <h4>{{request.user.first_name}}</h4>
-      <h6 style="color: rgb(255, 255, 255);">( Teacher )</h6>
+      <h6 style="color: rgb(255, 255, 255);">( Therapist )</h6>
 
     </center>
-    <a href="{% url 'bookings_list' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-    <a href="{% url 'bookings_list' %}"><i class="fas fa-pen"></i><span>Articles</span></a>
+    <a href="{% url 'therapist_dashboard' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+    <a href="{% url 'add_article' %}"><i class="fas fa-pen"></i><span>Articles</span></a>
     <a href="{% url 'bookings_list' %}"><i class="fas fa-book"></i><span>Bookings</span></a>
     <a href="{% url 'bookings_list' %}"><i class="fas fa-user"></i><span>Patient</span></a>
     <a href="{% url 'bookings_list' %}"><i class="fas fa-question-circle"></i><span>Feedbacks</span></a>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Feedback
+from .models import Article, Feedback
 
 class FeedbackForm(forms.ModelForm):
     class Meta:
@@ -9,3 +9,7 @@ class FeedbackForm(forms.ModelForm):
             'feedback': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Enter Your Feedback'}),
         }
 
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'content', 'image', 'category']

@@ -1,0 +1,40 @@
+{% extends 'therapist-dash/the_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  a:link {
+        text-decoration: none;
+      }
+    
+  </style>
+</head>
+<h2 style="text-align:center; color:blue;">ADD ARTICLE</h2>
+<form method="POST" enctype="multipart/form-data" autocomplete="off" style="margin:100px;margin-top: 0px;">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_title">Title</label>
+      {% render_field form.title class="form-control" placeholder="Enter title" %}
+
+      <label for="id_content">Content</label>
+      {% render_field form.content class="form-control" placeholder="Enter content" %}
+
+      <label for="id_image">Image</label>
+      {% render_field form.image class="form-control" placeholder="Choose image" %}
+
+      <label for="id_category">Category</label>
+      {% render_field form.category class="form-control" %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">ADD</button>
+</form>
+<br><br><br>
+{% endblock content %}
